@@ -70,10 +70,10 @@ static void make_board(int first_x, int first_y) {
 static void draw_cell(int x, int y, bool opened) {
   eadk_rect_t r = {(uint16_t)(GX + x * CELL), (uint16_t)(GY + y * CELL), CELL - 1, CELL - 1};
   if (!opened) {
-    eadk_display_push_rect_uniform(r, eadk_color_light_gray);
+    eadk_display_push_rect_uniform(r, eadk_color_white);
     if (flag_cell[y][x])
       eadk_display_draw_string("F", (eadk_point_t){(uint16_t)(r.x + 8), (uint16_t)(r.y + 3)}, true,
-                               eadk_color_red, eadk_color_light_gray);
+                               eadk_color_red, eadk_color_white);
     return;
   }
 
@@ -155,7 +155,7 @@ int main(void) {
       }
 
       eadk_rect_t cursor = {(uint16_t)(GX + cx * CELL), (uint16_t)(GY + cy * CELL), CELL - 1, CELL - 1};
-      eadk_display_draw_rect(cursor, eadk_color_red);
+      eadk_display_push_rect_uniform(cursor, eadk_color_red);
 
       eadk_keyboard_state_t k = eadk_keyboard_scan();
 
